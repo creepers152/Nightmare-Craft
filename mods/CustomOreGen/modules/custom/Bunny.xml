@@ -1,0 +1,1095 @@
+<ConfigSection>
+    <ConfigSection>
+        <!-- First we prepare the land -->
+        <IfCondition condition=':= dimension.generator != "HellRandomLevelSource" &amp; dimension.generator != "EndRandomLevelSource"'>
+            <Substitute name='FixBedrock' block='minecraft:bedrock'>
+                <Replaces block='factorization:FracturedBedrock' />
+            </Substitute>
+            <Substitute name='StonifyEverything' block='minecraft:stone' minHeight='1' maxHeight='254'>
+                <Replaces block='minecraft:bedrock' />
+                <Replaces block='gregtech:gt.blockores' />
+                <Replaces block='harvestcraft:salt' />
+                <Replaces block='ModularForcefieldSystem:tile.monazitOre' />
+                <ReplacesOre block='oreAmber' />
+                <ReplacesOre block='oreAmethyst' />
+                <ReplacesOre block='oreApatite' />
+                <ReplacesOre block='oreBauxite' />
+                <ReplacesOre block='oreCertusQuartz' />
+                <ReplacesOre block='oreChromium' />
+                <ReplacesOre block='oreCinnabar' />
+                <ReplacesOre block='oreCoal' />
+                <ReplacesOre block='oreCopper' />
+                <ReplacesOre block='oreDarkIron' />
+                <ReplacesOre block='oreDiamond' />
+                <ReplacesOre block='oreEmerald' />
+                <ReplacesOre block='oreGold' />
+                <ReplacesOre block='oreInfusedAir' />
+                <ReplacesOre block='oreInfusedEarth' />
+                <ReplacesOre block='oreInfusedEntropy' />
+                <ReplacesOre block='oreInfusedFire' />
+                <ReplacesOre block='oreInfusedOrder' />
+                <ReplacesOre block='oreInfusedWater' />
+                <ReplacesOre block='oreIron' />
+                <ReplacesOre block='oreLapis' />
+                <ReplacesOre block='oreLead' />
+                <ReplacesOre block='oreManganese' />
+                <ReplacesOre block='oreMolydenum' />
+                <ReplacesOre block='oreNickel' />
+                <ReplacesOre block='orePoorCopper' />
+                <ReplacesOre block='orePoorGold' />
+                <ReplacesOre block='orePoorIron' />
+                <ReplacesOre block='orePoorLead' />
+                <ReplacesOre block='orePoorTin' />
+                <ReplacesOre block='oreRedstone' />
+                <ReplacesOre block='oreRuby' />
+                <ReplacesOre block='oreSalt' />
+                <ReplacesOre block='oreSaltpeter' />
+                <ReplacesOre block='oreSapphire' />
+                <ReplacesOre block='oreSilver' />
+                <ReplacesOre block='oreSulfur' />
+                <ReplacesOre block='oreTeslatite' />
+                <ReplacesOre block='oreTin' />
+                <ReplacesOre block='oreTitanium' />
+                <ReplacesOre block='oreTungsten' />
+                <ReplacesOre block='oreUranium' />
+                <ReplacesOre block='oreZinc' />
+            </Substitute>
+            <Substitute name='StonifyDirt' block='minecraft:stone' maxHeight=':= 48/64 * dimension.groundLevel'>
+                <Replaces block='minecraft:dirt' />
+            </Substitute>
+            <Substitute name='StonifyGravel' block='minecraft:stone' maxHeight=':= 16/64 * dimension.groundLevel'>
+                <Replaces block='minecraft:gravel' />
+            </Substitute>
+        </IfCondition>
+        <IfCondition condition=':= dimension.generator != "RandomLevelSource" &amp; dimension.generator != "EndRandomLevelSource"'>
+            <Substitute name='NetherifyEverything' block='minecraft:netherrack' minHeight='1' maxHeight='126'>
+                <Replaces block='minecraft:bedrock' />
+                <Replaces block='gregtech:gt.blockores' />
+                <Replaces block='gregtech:gt.blockgranites' />
+                <ReplacesOre block='oreNetherQuartz' />
+                <ReplacesOre block='oreFirestone' />
+            </Substitute>
+        </IfCondition>
+        <IfCondition condition=':= dimension.generator = "EndRandomLevelSource"'>
+            <Substitute name='EndifyEverything' block='minecraft:end_stone'>
+                <Replaces block='gregtech:gt.blockores' />
+                <Replaces block='gregtech:gt.blockgranites' />
+            </Substitute>
+            <Cloud name='Asteroids'>
+                <OreBlock block='minecraft:end_stone' />
+                <Setting name='DistributionFrequency' avg='0.01' range='0' />
+                <Setting name='CloudRadius' avg='48' range='16' />
+                <Setting name='CloudThickness' avg='24' range='8' />
+                <Setting name='CloudSizeNoise' avg='0.2' range='0' />
+                <Setting name='CloudHeight' avg='128' range='256' />
+                <Setting name='CloudInclination' avg='0.1' range='0.1' />
+                <Setting name='OreDensity' avg='1' range='0' />
+                <Setting name='OreVolumeNoiseCutoff' avg='0' range='0' />
+                <Setting name='OreRadiusMult' avg='1' range='0' />
+                <Replaces block='minecraft:air' />
+            </Cloud>
+        </IfCondition>
+    </ConfigSection>
+    <ConfigSection>
+        <!-- Small presets -->
+        <StandardGenPreset name='SmallStone'>
+            <Setting name='Size' avg='1' range='0' />
+            <ReplacesOre block='blockLimestone' />
+            <ReplacesOre block='blockMarble' />
+            <ReplacesOre block='marble' />
+            <ReplacesOre block='stone' />
+            <ReplacesOre block='stoneBasalt' />
+            <ReplacesOre block='stoneMarble' />
+        </StandardGenPreset>
+        <StandardGenPreset name='SmallNetherrack'>
+            <Setting name='Size' avg='1' range='0' />
+            <ReplacesOre block='stoneNetherrack' />
+        </StandardGenPreset>
+        <StandardGenPreset name='SmallEndstone'>
+            <Setting name='Size' avg='1' range='0' />
+            <ReplacesOre block='stoneEndstone' />
+        </StandardGenPreset>
+    </ConfigSection>
+    <ConfigSection>
+        <!-- Overworld small ores -->
+        <IfCondition condition=':= dimension.generator != "HellRandomLevelSource" &amp; dimension.generator != "EndRandomLevelSource"'>
+            <StandardGen name='ore.small.copper.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16035, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='24' range='8' scaleTo='biome' />
+                <Setting name='Height' avg='90' range='30' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.tin.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16057, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='24' range='8' scaleTo='biome' />
+                <Setting name='Height' avg='90' range='30' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.bismuth.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16090, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' scaleTo='biome' />
+                <Setting name='Height' avg='100' range='20' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.coal.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16535, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='18' range='6' scaleTo='biome' />
+                <Setting name='Height' avg='80' range='20' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.iron.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16032, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='12' range='4' scaleTo='biome' />
+                <Setting name='Height' avg='60' range='20' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.lead.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16089, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='12' range='4' scaleTo='biome' />
+                <Setting name='Height' avg='60' range='20' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.zinc.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16036, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='9' range='3' scaleTo='biome' />
+                <Setting name='Height' avg='45' range='15' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.gold.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16086, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' scaleTo='biome' />
+                <Setting name='Height' avg='30' range='10' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.silver.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16054, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' scaleTo='biome' />
+                <Setting name='Height' avg='30' range='10' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.nickel.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16034, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' scaleTo='biome' />
+                <Setting name='Height' avg='30' range='10' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.lapis.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16526, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='3' range='1' scaleTo='biome' />
+                <Setting name='Height' avg='30' range='10' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.diamond.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16500, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='1.5' range='0.5' scaleTo='biome' />
+                <Setting name='Height' avg='7.5' range='2.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.emerald.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16501, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.ruby.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16502, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.sapphire.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16503, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.greensapphire.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16504, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.olivine.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16505, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.topaz.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16507, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.tanzanite.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16508, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.amethyst.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16509, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.opal.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16510, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.jasper.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16511, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.bluetopaz.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16513, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.amber.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16514, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.foolsruby.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16512, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.garnetred.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16527, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.garnetyellow.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16528, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' scaleTo='biome' />
+                <Setting name='Height' avg='127.5' range='122.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.redstone.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16810, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' scaleTo='biome' />
+                <Setting name='Height' avg='12.5' range='7.5' scaleTo='biome' />
+            </StandardGen>
+            <StandardGen name='ore.small.sulfur_o.stone' inherits='SmallStone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:16022, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' scaleTo='biome' />
+                <Setting name='Height' avg='10' range='5' scaleTo='biome' />
+            </StandardGen>
+        </IfCondition>
+        <!-- Nether small ores -->
+        <IfCondition condition=':= dimension.generator != "RandomLevelSource" &amp; dimension.generator != "EndRandomLevelSource"'>
+            <StandardGen name='ore.small.copper.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17035, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='24' range='8' />
+                <Setting name='Height' avg='90' range='30' />
+            </StandardGen>
+            <StandardGen name='ore.small.tin.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17057, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='24' range='8' />
+                <Setting name='Height' avg='90' range='30' />
+            </StandardGen>
+            <StandardGen name='ore.small.bismuth.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17090, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='100' range='20' />
+            </StandardGen>
+            <StandardGen name='ore.small.iron.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17032, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='12' range='4' />
+                <Setting name='Height' avg='60' range='20' />
+            </StandardGen>
+            <StandardGen name='ore.small.lead.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17089, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='12' range='4' />
+                <Setting name='Height' avg='60' range='20' />
+            </StandardGen>
+            <StandardGen name='ore.small.zinc.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17036, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='9' range='3' />
+                <Setting name='Height' avg='45' range='15' />
+            </StandardGen>
+            <StandardGen name='ore.small.gold.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17086, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+            <StandardGen name='ore.small.silver.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17054, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+            <StandardGen name='ore.small.nickel.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17034, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+            <StandardGen name='ore.small.diamond.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17500, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='1.5' range='0.5' />
+                <Setting name='Height' avg='7.5' range='2.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.emerald.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17501, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.ruby.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17502, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.sapphire.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17503, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.greensapphire.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17504, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.olivine.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17505, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.topaz.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17507, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.tanzanite.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17508, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.amethyst.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17509, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.opal.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17510, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.jasper.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17511, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.bluetopaz.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17513, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.amber.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17514, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.foolsruby.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17512, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.garnetred.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17527, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.garnetyellow.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17528, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='0.75' range='0.25' />
+                <Setting name='Height' avg='127.5' range='122.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.redstone.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17810, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='12.5' range='7.5' />
+            </StandardGen>
+            <StandardGen name='ore.small.netherquartz.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17522, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='48' range='16' />
+                <Setting name='Height' avg='75' range='45' />
+            </StandardGen>
+            <StandardGen name='ore.small.saltpeter.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17836, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='35' range='25' />
+            </StandardGen>
+            <StandardGen name='ore.small.sulfur_n.netherrack' inherits='SmallNetherrack'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:17022, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='24' range='8' />
+                <Setting name='Height' avg='35' range='25' />
+            </StandardGen>
+        </IfCondition>
+        <!-- End small ores -->
+        <IfCondition condition=':= dimension.generator != "RandomLevelSource" &amp; dimension.generator != "HellRandomLevelSource"'>
+            <StandardGen name='ore.small.copper.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18035, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='24' range='8' />
+                <Setting name='Height' avg='90' range='30' />
+            </StandardGen>
+            <StandardGen name='ore.small.tin.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18057, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='24' range='8' />
+                <Setting name='Height' avg='90' range='30' />
+            </StandardGen>
+            <StandardGen name='ore.small.iron.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18032, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='12' range='4' />
+                <Setting name='Height' avg='60' range='20' />
+            </StandardGen>
+            <StandardGen name='ore.small.lead.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18089, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='12' range='4' />
+                <Setting name='Height' avg='60' range='20' />
+            </StandardGen>
+            <StandardGen name='ore.small.zinc.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18036, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='9' range='3' />
+                <Setting name='Height' avg='45' range='15' />
+            </StandardGen>
+            <StandardGen name='ore.small.gold.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18086, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+            <StandardGen name='ore.small.silver.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18054, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+            <StandardGen name='ore.small.nickel.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18034, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+            <StandardGen name='ore.small.platinum.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18085, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+            <StandardGen name='ore.small.iridium.endstone' inherits='SmallEndstone'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:18084, n:1, id:"GT_TileEntity_Ores"}' />
+                <Setting name='Frequency' avg='6' range='2' />
+                <Setting name='Height' avg='30' range='10' />
+            </StandardGen>
+        </IfCondition>
+    </ConfigSection>
+    <ConfigSection>
+        <!-- Large presets -->
+        <CloudPreset name='Large'>
+            <Setting name='CloudSizeNoise' avg='0.2' range='0' />
+            <Setting name='CloudInclination' avg='0.2' range='0.2' />
+            <Setting name='OreVolumeNoiseCutoff' avg='0' range='0' />
+            <Setting name='OreRadiusMult' avg='1' range='0.2' />
+        </CloudPreset>
+        <CloudPreset name='LargeStone' inherits='Large'>
+            <ReplacesOre block='blockLimestone' />
+            <ReplacesOre block='blockMarble' />
+            <ReplacesOre block='marble' />
+            <ReplacesOre block='stone' />
+            <ReplacesOre block='stoneBasalt' />
+            <ReplacesOre block='stoneMarble' />
+        </CloudPreset>
+        <CloudPreset name='LargeNetherrack' inherits='Large'>
+            <ReplacesOre block='stoneNetherrack' />
+        </CloudPreset>
+        <CloudPreset name='LargeEndstone' inherits='Large'>
+            <ReplacesOre block='stoneEndstone' />
+        </CloudPreset>
+    </ConfigSection>
+    <ConfigSection>
+        <!-- Overworld large ores -->
+        <IfCondition condition=':= dimension.generator != "HellRandomLevelSource" &amp; dimension.generator != "EndRandomLevelSource"'>
+            <Cloud name='ore.mix.lignite.stone' inherits='LargeStone' wireframeColor='0x40644646'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:538, n:1, id:"GT_TileEntity_Ores"}' weight='0.875' /><!--Lignite-->
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:535, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' /><!--Coal-->
+                <Setting name='DistributionFrequency' avg='0.3' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='9.6' range='4.8' />
+                <Setting name='CloudThickness' avg='4.8' range='2.4' />
+                <Setting name='CloudHeight' avg='90' range='40' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.75' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.coal.stone' inherits='LargeStone' wireframeColor='0x40464646'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:535, n:1, id:"GT_TileEntity_Ores"}' weight='0.875' /><!--Coal-->
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:538, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' /><!--Lignite-->
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='9.6' range='4.8' />
+                <Setting name='CloudThickness' avg='4.8' range='2.4' />
+                <Setting name='CloudHeight' avg='65' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.magnetite.stone' inherits='LargeStone' wireframeColor='1084647516'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:870, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:870, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:032, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:923, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.16' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='9.6' range='4.8' />
+                <Setting name='CloudThickness' avg='4.8' range='2.4' />
+                <Setting name='CloudHeight' avg='85' range='35' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.59375' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.gold.stone' inherits='LargeStone' wireframeColor='1083950952'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:870, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:870, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:923, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:086, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.16' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='9.6' range='4.8' />
+                <Setting name='CloudThickness' avg='4.8' range='2.4' />
+                <Setting name='CloudHeight' avg='70' range='10' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.59375' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.iron.stone' inherits='LargeStone' wireframeColor='1080372419'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:930, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:931, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:917, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:871, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.12' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='25' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.666667' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.darkiron.stone' inherits='LargeStone' wireframeColor='1080372419'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:307, n:1, id:"GT_TileEntity_Ores"}' weight='0.25' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:336, n:1, id:"GT_TileEntity_Ores"}' weight='0.25' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:342, n:1, id:"GT_TileEntity_Ores"}' weight='0.25' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:829, n:1, id:"GT_TileEntity_Ores"}' weight='0.25' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='2' range='0' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.8' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.cassiterite.stone' inherits='LargeStone' wireframeColor='1083549619'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:057, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:057, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:824, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:057, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.2' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='70' range='40' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.708333' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.tetrahedrite.stone' inherits='LargeStone' wireframeColor='1081541489'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:840, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:840, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:035, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:945, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='80' range='30' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.666667' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.copper.stone' inherits='LargeStone' wireframeColor='1081605118'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:855, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:032, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:834, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:035, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.2' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='20' range='10' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.666667' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.bauxite.stone' inherits='LargeStone' wireframeColor='1079628521'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:822, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:822, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:019, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:918, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='60' range='30' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.666667' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.salts.stone' inherits='LargeStone' wireframeColor='1074304242'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:944, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:817, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:907, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:920, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.05' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='55' range='5' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.625' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.redstone.stone' inherits='LargeStone' wireframeColor='1077729061'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:810, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:810, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:502, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:826, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='25' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.625' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.soapstone.stone' inherits='LargeStone' wireframeColor='1083915249'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:877, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:902, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:509, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:909, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.04' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.nickel.stone' inherits='LargeStone' wireframeColor='1087697490'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:906, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:034, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:827, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:909, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.04' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.platinum.stone' inherits='LargeStone' wireframeColor='1074145546'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:828, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:052, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:085, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:084, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.005' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='45' range='5' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.pitchblende.stone' inherits='LargeStone' wireframeColor='1083425938'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:873, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:873, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:098, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:922, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.04' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.plutonium.stone' inherits='LargeStone' wireframeColor='1079463928'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:922, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:922, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:100, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:098, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.01' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='5' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.monazite.stone' inherits='LargeStone' wireframeColor='1079970409'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:905, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:905, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:520, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:067, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.05' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='30' range='10' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.molybdenum.stone' inherits='LargeStone' wireframeColor='1084197025'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:882, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:942, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:048, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:883, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.005' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='35' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.tungstate.stone' inherits='LargeStone' wireframeColor='1080216571'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:910, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:910, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:841, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:006, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.01' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='35' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.sapphire.stone' inherits='LargeStone' wireframeColor='1074278265'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:820, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:835, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:503, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:504, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.06' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.manganese.stone' inherits='LargeStone' wireframeColor='1090049001'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:831, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:838, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:943, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:921, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.05' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='5' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.quartz.stone' inherits='LargeStone' wireframeColor='1086982964'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:523, n:1, id:"GT_TileEntity_Ores"}' weight='0.2' /><!--Quartzite-->
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:904, n:1, id:"GT_TileEntity_Ores"}' weight='0.2' /><!--Barite-->
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:516, n:1, id:"GT_TileEntity_Ores"}' weight='0.6' /><!--Certus Quartz-->
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='50' range='20' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.8' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.diamond.stone' inherits='LargeStone' wireframeColor='1075481950'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:865, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' /><!--Graphite-->
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:812, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' /><!--Nikolite-->
+                <OreBlock block='bluepower:teslatite_ore' weight='0.3' /><!--Teslatite-->
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:500, n:1, id:"GT_TileEntity_Ores"}' weight='0.1' /><!--Diamond-->
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='10' range='8' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.8' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.olivine.stone' inherits='LargeStone' wireframeColor='1086864150'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:927, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:908, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:505, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:933, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.06' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.apatite.stone' inherits='LargeStone' wireframeColor='1078113078'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:530, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:530, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:534, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:833, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='50' range='10' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.galena.stone' inherits='LargeStone' wireframeColor='1081512332'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:830, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:830, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:054, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:089, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.04' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='45' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.8125' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.lapis.stone' inherits='LargeStone' wireframeColor='1076115098'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:524, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:525, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:526, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:823, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.04' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='35' range='15' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.8125' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.beryllium.stone' inherits='LargeStone' wireframeColor='1089175767'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:008, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:008, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:501, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:096, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.03' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='17.5' range='12.5' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.shard.air.stone' inherits='LargeStone' wireframeColor='0xffffff00'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:540, n:1, id:"GT_TileEntity_Ores"}' weight='0.7' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:514, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='32' range='32' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.5' range='0' />
+                <Biome name=".*" weight="0.2" />
+                <BiomeType name="savanna"/>
+                <BiomeType name="mountain" />
+                <BiomeType name="hills" />
+                <BiomeType name="plains" />
+            </Cloud>
+            <Cloud name='ore.shard.fire.stone' inherits='LargeStone' wireframeColor='0xffff0000'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:541, n:1, id:"GT_TileEntity_Ores"}' weight='0.7' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:514, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='32' range='32' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.5' range='0' />
+                <Biome name=".*" weight="0.2" />
+                <BiomeType name="hot"/>
+                <BiomeType name="desert" />
+                <BiomeType name="nether" />
+                <BiomeType name="mesa" />
+            </Cloud>
+            <Cloud name='ore.shard.earth.stone' inherits='LargeStone' wireframeColor='0xff00ff00'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:542, n:1, id:"GT_TileEntity_Ores"}' weight='0.7' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:514, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='32' range='32' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.5' range='0' />
+                <Biome name=".*" weight="0.2" />
+                <BiomeType name="coniferous"/>
+                <BiomeType name="forest" />
+                <BiomeType name="sandy" />
+                <BiomeType name="beach" />
+            </Cloud>
+            <Cloud name='ore.shard.water.stone' inherits='LargeStone' wireframeColor='0xff0000ff'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:543, n:1, id:"GT_TileEntity_Ores"}' weight='0.7' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:514, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='32' range='32' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.5' range='0' />
+                <Biome name=".*" weight="0.2" />
+                <BiomeType name="water"/>
+                <BiomeType name="ocean" />
+                <BiomeType name="river" />
+                <BiomeType name="wet" />
+            </Cloud>
+            <Cloud name='ore.shard.entropy.stone' inherits='LargeStone' wireframeColor='0xff888888'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:544, n:1, id:"GT_TileEntity_Ores"}' weight='0.7' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:514, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='32' range='32' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.5' range='0' />
+                <Biome name=".*" weight="0.2" />
+                <BiomeType name="dry"/>
+                <BiomeType name="sparse" />
+                <BiomeType name="swamp" />
+                <BiomeType name="wasteland" />
+            </Cloud>
+            <Cloud name='ore.shard.order.stone' inherits='LargeStone' wireframeColor='0xffffffff'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:545, n:1, id:"GT_TileEntity_Ores"}' weight='0.7' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:514, n:1, id:"GT_TileEntity_Ores"}' weight='0.3' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' scaleTo='biome' />
+                <Setting name='CloudRadius' avg='4' range='2' />
+                <Setting name='CloudThickness' avg='2' range='1' />
+                <Setting name='CloudHeight' avg='32' range='32' scaleTo='biome' />
+                <Setting name='OreDensity' avg='0.5' range='0' />
+                <Biome name=".*" weight="0.2" />
+                <BiomeType name="dense"/>
+                <BiomeType name="snowy" />
+                <BiomeType name="cold" />
+                <BiomeType name="frozen" />
+                <BiomeType name="mushroom" />
+            </Cloud>
+        </IfCondition>
+        <!-- Nether large ores -->
+        <IfCondition condition=':= dimension.generator != "RandomLevelSource" &amp; dimension.generator != "EndRandomLevelSource"'>
+            <Cloud name='ore.mix.magnetite.netherrack' inherits='LargeNetherrack' wireframeColor='1086272980'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1870, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1870, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1032, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1923, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.16' range='0' />
+                <Setting name='CloudRadius' avg='9.6' range='4.8' />
+                <Setting name='CloudThickness' avg='4.8' range='2.4' />
+                <Setting name='CloudHeight' avg='85' range='35' />
+                <Setting name='OreDensity' avg='0.59375' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.iron.netherrack' inherits='LargeNetherrack' wireframeColor='1076220878'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1930, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1931, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1917, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1871, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.12' range='0' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='25' range='15' />
+                <Setting name='OreDensity' avg='0.666667' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.tetrahedrite.netherrack' inherits='LargeNetherrack' wireframeColor='1076124408'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1840, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1840, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1035, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1945, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.07' range='0' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='100' range='20' />
+                <Setting name='OreDensity' avg='0.666667' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.netherquartz.netherrack' inherits='LargeNetherrack' wireframeColor='1077636825'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1522, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1522, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1522, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1522, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.08' range='0' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='60' range='20' />
+                <Setting name='OreDensity' avg='0.708333' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.sulfur.netherrack' inherits='LargeNetherrack' wireframeColor='1076023712'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1022, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1022, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1834, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1839, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.1' range='0' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='12.5' range='7.5' />
+                <Setting name='OreDensity' avg='0.708333' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.copper.netherrack' inherits='LargeNetherrack' wireframeColor='1087071861'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1855, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1032, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1834, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1035, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.08' range='0' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='20' range='10' />
+                <Setting name='OreDensity' avg='0.666667' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.redstone.netherrack' inherits='LargeNetherrack' wireframeColor='1078601666'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1810, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1810, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1502, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1826, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.06' range='0' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='25' range='15' />
+                <Setting name='OreDensity' avg='0.625' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.nickel.netherrack' inherits='LargeNetherrack' wireframeColor='1080216106'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1906, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1034, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1827, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:1909, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.04' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='25' range='15' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+        </IfCondition>
+        <!-- End large ores -->
+        <IfCondition condition=':= dimension.generator != "RandomLevelSource" &amp; dimension.generator != "HellRandomLevelSource"'>
+            <Cloud name='ore.mix.naquadah.endstone' inherits='LargeEndstone' wireframeColor='1086230127'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2324, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2324, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2324, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2326, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.02' range='0' />
+                <Setting name='CloudRadius' avg='9.6' range='4.8' />
+                <Setting name='CloudThickness' avg='4.8' range='2.4' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.65625' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.cassiterite.endstone' inherits='LargeEndstone' wireframeColor='1083464059'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2057, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2057, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2824, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2057, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.2' range='0' />
+                <Setting name='CloudRadius' avg='7.2' range='3.6' />
+                <Setting name='CloudThickness' avg='3.6' range='1.8' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.708333' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.nickel.endstone' inherits='LargeEndstone' wireframeColor='1082933518'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2906, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2034, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2827, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2909, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.16' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.platinum.endstone' inherits='LargeEndstone' wireframeColor='1084905403'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2828, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2052, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2085, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2084, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.02' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.molybdenum.endstone' inherits='LargeEndstone' wireframeColor='1079635036'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2882, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2942, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2048, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2883, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.02' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.tungstate.endstone' inherits='LargeEndstone' wireframeColor='1074980505'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2910, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2910, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2841, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2006, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.04' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.manganese.endstone' inherits='LargeEndstone' wireframeColor='1079493015'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2831, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2838, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2943, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2921, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.08' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.olivine.endstone' inherits='LargeEndstone' wireframeColor='1079509517'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2927, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2908, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2505, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2933, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.24' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.lapis.endstone' inherits='LargeEndstone' wireframeColor='1081143216'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2524, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2525, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2526, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2823, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.16' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.8125' range='0' />
+            </Cloud>
+            <Cloud name='ore.mix.beryllium.endstone' inherits='LargeEndstone' wireframeColor='1088614383'>
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2008, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2008, n:1, id:"GT_TileEntity_Ores"}' weight='0.375' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2501, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <OreBlock block='gregtech:gt.blockores' nbt='{m:2096, n:1, id:"GT_TileEntity_Ores"}' weight='0.125' />
+                <Setting name='DistributionFrequency' avg='0.12' range='0' />
+                <Setting name='CloudRadius' avg='4.8' range='2.4' />
+                <Setting name='CloudThickness' avg='2.4' range='1.2' />
+                <Setting name='CloudHeight' avg='128' range='128' />
+                <Setting name='OreDensity' avg='0.6875' range='0' />
+            </Cloud>
+        </IfCondition>
+    </ConfigSection>
+</ConfigSection>
